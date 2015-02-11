@@ -1,0 +1,13 @@
+<div class="center hero-unit">
+	<h1>Elmwood Park Public Library</h1>
+	<h2>Summer Reading module</h2>
+	
+	<%= link_to "Create Reader", addNewReader_path, class: "btn btn-large btn-primary" %>
+	<br>
+	<br>
+	<div style="text-align: center;">
+	<input type="text" name="name" placeholder="Sam Smith" style="width:40% !important;"> <%= link_to "Search reader", allReaders_path, class: "btn btn-primary"%>
+	</div>
+	<br>
+	<%= link_to "View all Readers", allReaders_path, class: "btn btn-large btn-primary" %>
+</div>

@@ -1,0 +1,11 @@
+<h2>All readers</h2>
+<%= will_paginate %>
+
+<ul class="readers">
+	<% @readers.each do |reader| %>
+	<li>
+	<%=link_to reader.firstName+" "+reader.lastName, reader%>
+	| <%=link_to 'Delete', reader, method: :delete, confirm: "Are you sure?" %>
+	</li>
+	<% end %>
+</ul>
