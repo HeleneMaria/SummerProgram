@@ -1,8 +1,11 @@
 class SearchController < ApplicationController
   
   def search
+    puts"controller search--------------------------------"
     if params[:name] #comes from home or search
+      put "#comes from home or search"
       if params[:schoolFallName] or params[:schoolFallGrade] or params[:prize] #comes from search
+        puts "#comes from search"
          @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade] ,params[:prize])
         if @readers !=nil
           @readers = @readers.paginate(:page => params[:page], :per_page => 10)
