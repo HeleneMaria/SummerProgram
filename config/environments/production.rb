@@ -81,6 +81,6 @@ Rails.application.configure do
   #For the CSS to be charged on Heroku
   config.serve_static_files = true
   
-  #for the SQL to be logged on Heroku
-  config.logger = Logger.new(STDOUT)
+  #change the logs level on Heroku
+  config.log_level = :warn
 end
