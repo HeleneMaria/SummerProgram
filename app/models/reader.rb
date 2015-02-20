@@ -9,10 +9,14 @@
 #  email           :string
 #  schoolFallName  :string
 #  schoolFallGrade :string
-#  program         :integer
+#  program         :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  age             :integer
+#  tShirtSize      :string
 #
+
+
 
 class Reader < ActiveRecord::Base
   
@@ -22,5 +26,44 @@ class Reader < ActiveRecord::Base
  # validates :phoneNumber, format:{ with: PHONE_NUMBER_REGEX }
   EMAIL_REGEX=/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/
   validates :email, presence: true, uniqueness: {case_sensitive:false}#, format: { with: EMAIL_REGEX}
+  
+  def self.search1(search)
+    if search
+      self.where(['lastName like ? or firstName like ?', search ,search])
+    else
+      self.all
+    end
+  
+  end
+  
+  def self.search2(name,schoolFallName,schoolFallGrade,prize)
+    strings = Array.new
+    condition = Array.new
+    all=Array.new
+    
+    if name != ''
+      strings.push 'lastName like ? or firstName like ?'
+      condition.push name
+      condition.push name 
+    end
+     if schoolFallName != ''
+      strings.push 'schoolFallName like ?'
+      condition.push schoolFallName
+    end
+     if schoolFallGrade != ''
+      strings.push 'schoolFallGrade like ?'
+      condition.push schoolFallGrade
+    end
+    if prize != ''
+      strings.push 'prize like ?'
+      condition.push prize
+    end
+    
+    condition.insert(0,strings.join(" or "))
+    self.where(condition)
+  end
+
 end
+
+
 

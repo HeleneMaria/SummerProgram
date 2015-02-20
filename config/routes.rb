@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
  get '/addNewReader', to: 'readers#new'
  get '/allReaders', to: 'readers#index'
+ get '/searchReaders', to: 'search#search'
+ 
+ post 'searchReaders', to: 'search#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

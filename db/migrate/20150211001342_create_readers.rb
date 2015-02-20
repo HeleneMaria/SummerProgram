@@ -5,10 +5,12 @@ class CreateReaders < ActiveRecord::Migration
       t.string :lastName
       t.string :phoneNumber
       t.string :email
+      t.integer :age
+      t.string :tShirtSize
       t.string :schoolFallName
       t.string :schoolFallGrade
       t.integer :program
-
+      
       t.timestamps null: false
     end
   end

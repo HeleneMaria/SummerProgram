@@ -1,4 +1,18 @@
 <h2>Update reader</h2>
+<script type="text/javascript">
+  
+   function changeFunc() {
+    var selectBox = document.getElementById("reader_schoolFallName");
+    var newSchool = document.getElementById("reader_newSchoolFallName");
+    if (selectBox.selectedIndex ==0){
+    	newSchool.style.display = 'block';
+    }
+    else{
+    	newSchool.style.display = 'none';
+    }
+   }
+
+  </script>
 
 <div class="row">
 	<div class="span6 offset">
@@ -17,16 +31,24 @@
 			<%= f.label :email %>
 			<%= f.text_field :email %>
 			
+			<%= f.label :tShirtSize %>
+			<%= f.text_field :tShirtSize %>
+			
+			<%= f.label :age %>
+			<%= f.text_field :age %>
+			
 			<%= f.label :schoolFallName %>
-			<%= f.text_field :schoolFallName %>
+			<%= f.collection_select :schoolFallName, @schools,:schoolFallName,:schoolFallName, {:prompt => @select_value, :selected => @reader.schoolFallName, :include_blank => "Add new"}, {:onChange=>"changeFunc();"} %>
+			
+			<%= f.text_field :newSchoolFallName,{ :style=> "display : none;"}%>
 			
 			<%= f.label :schoolFallGrade %>
 			<%= f.text_field :schoolFallGrade %>
 			
 			<%= f.label :program %>
-			<%= f.text_field :program %>
-			
-			<%=f.submit "Create the reader", class: "btn btn-large btn-primary"%>
+			<%= f.select :program, @programs, :selected => @reader.program %>
+
+			<%=f.submit "Update the reader", class: "btn btn-large btn-primary"%>
 		<% end %>
 	</div>
 </div>
