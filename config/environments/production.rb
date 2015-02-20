@@ -77,5 +77,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
+  #---------PERSONAL
+  #For the CSS to be charged on Heroku
   config.serve_static_files = true
+  
+  #for the SQL to be logged on Heroku
+  config.logger = Logger.new(STDOUT)
 end
