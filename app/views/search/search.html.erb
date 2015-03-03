@@ -18,7 +18,8 @@
 
 <%= will_paginate @readers%>
 
-<ul class="readers" style="margin-top: 50px;">
+
+<ul class="readers" style="margin-bottom: 50px;">
 	<% @readers.each do |reader| %>
 	<li>
 	<%=link_to reader.firstName+" "+reader.lastName, reader%>
@@ -26,3 +27,9 @@
 	</li>
 	<% end %>
 </ul>
+
+<%= link_to "Download CSV", searchExportAll_path(:name => params[:name],:schoolFallName=> params[:schoolFallName],
+:schoolFallGrade=> params[:schoolFallGrade], :prize=> params[:prize],format: "csv"), class: "btn btn-large btn-primary" %>
+<%= link_to "Download XLS", searchExportAll_path(:name => params[:name],:schoolFallName=> params[:schoolFallName],
+:schoolFallGrade=> params[:schoolFallGrade], :prize=> params[:prize],format: "xls"), class: "btn btn-large btn-primary" %>
+

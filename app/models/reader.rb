@@ -19,6 +19,8 @@
 
 
 class Reader < ActiveRecord::Base
+  #relation to_many books, books gets destroy when the reader is
+  has_many :books, dependent: :destroy
   
   validates :firstName, presence: true, length:{maximum:50}
   validates :lastName, presence: true, length:{maximum:50}
@@ -60,9 +62,20 @@ class Reader < ActiveRecord::Base
     end
     
     condition.insert(0,strings.join(" or "))
-    self.where(condition)
+    self.select([:id, :firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize]).where(condition)
   end
 
+
+
+
+def self.as_csv(options = {})
+  CSV.generate(options) do |csv|
+    csv << column_names
+    all.each do |item|
+      csv << item.attributes.values_at(*column_names)
+    end
+  end
+end
 end
 
 

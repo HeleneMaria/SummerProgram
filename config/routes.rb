@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :readers
+  resources :books, only: [:create, :destroy]
 
   root to: 'static_pages#home'
   
@@ -9,7 +10,11 @@ Rails.application.routes.draw do
  get '/allReaders', to: 'readers#index'
  get '/searchReaders', to: 'search#search'
  
+ get '/searchExportAll', to: 'search#exportAll'
+ 
+ post 'books/create'
  post 'searchReaders', to: 'search#search'
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

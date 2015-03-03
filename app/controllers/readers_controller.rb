@@ -45,6 +45,7 @@ class ReadersController < ApplicationController
   
   def show
     @reader = Reader.find(params[:id])
+    @book = @reader.books.build
   end
   
   def create
@@ -69,7 +70,7 @@ class ReadersController < ApplicationController
   end
   
   def reader_param
-    params.require(:reader).permit(:firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize, :newSchoolFallName)
+    params.require(:reader).permit(:firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize, :newSchoolFallName, :books)
   end
   
 end

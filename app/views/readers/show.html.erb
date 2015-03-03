@@ -16,5 +16,27 @@
 <br>
 <%= @reader.program %>
 
+<% if @reader.books.count > 0 %>
+	<h5> Books (<%= @reader.books.count %>) :</h5>
+	<% @reader.books.each do |book|%>
+	<% if book.title  %><li> <%= book.title %> | <%= link_to "delete", book, method: :delete,
+														 confirm: "You Sure?",
+														 title: book.title,
+														 :id => book.id
+														 %>
+		</li>
+	<%end%>
+	<%end %>
+<% end%>
+
+</br>Form to add a new book
+<%= form_for(@book) do |f|%>
+	<%= render 'shared/error_messages', object: f.object%>
+	<div class="field">
+		<%= f.text_area :title, placeholder: "Add new book..."%>
+		<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
+	</div>
+	<%= f.submit "Add", class: 'btn btn-large btn-primary'%>
+<%end %>
 <br>
 <%= link_to 'Edit', [:edit, @reader] %>
