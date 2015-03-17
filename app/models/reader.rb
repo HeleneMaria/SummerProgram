@@ -2,21 +2,21 @@
 #
 # Table name: readers
 #
-#  id              :integer          not null, primary key
-#  firstName       :string
-#  lastName        :string
-#  phoneNumber     :string
-#  email           :string
-#  schoolFallName  :string
-#  schoolFallGrade :string
-#  program         :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  age             :integer
-#  tShirtSize      :string
+#  id                :integer          not null, primary key
+#  firstName         :string
+#  lastName          :string
+#  phoneNumber       :string
+#  email             :string
+#  schoolFallName    :string
+#  schoolFallGrade   :string
+#  program           :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  age               :integer
+#  tShirtSize        :string
+#  newSchoolFallName :string
+#  prize             :integer
 #
-
-
 
 class Reader < ActiveRecord::Base
   #relation to_many books, books gets destroy when the reader is

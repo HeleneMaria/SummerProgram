@@ -48,6 +48,16 @@
 			<%= f.label :program %>
 			<%= f.select :program, @programs, :selected => @reader.program %>
 			
+			<%= f.label :prize %>
+			<table class="readerTable">
+			<tr>
+				<th><%= f.radio_button :prize, 0%> </th><th><%= f.label :prize, 'None',{:value => 0, :style=> "font-weight: 400;"}%></th>
+				<th><%= f.radio_button :prize, 1%> </th><th><%= f.label :prize, 'Level 1',{:value => 1, :style=> "font-weight: 400;"}%></th>
+				<th><%= f.radio_button :prize, 2%> </th><th><%= f.label :prize, 'Level 2',{:value => 2, :style=> "font-weight: 400;"} %></th>
+			</tr>
+			</table>
+  			
+  			
 			<%=f.submit "Update the reader", class: "btn btn-large btn-primary"%>
 		<% end %>
 	</div>

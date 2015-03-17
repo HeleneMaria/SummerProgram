@@ -30,6 +30,7 @@ class ReadersController < ApplicationController
   
   def update
     @reader = Reader.find(params[:id])
+    puts " PRIIIIIIZE : "+reader_param[:prize]
     if @reader.update_attributes(reader_param)
       if @reader.newSchoolFallName != ""
         @reader.schoolFallName =@reader.newSchoolFallName
@@ -70,7 +71,7 @@ class ReadersController < ApplicationController
   end
   
   def reader_param
-    params.require(:reader).permit(:firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize, :newSchoolFallName, :books)
+    params.require(:reader).permit(:firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize, :newSchoolFallName, :books, :prize)
   end
   
 end

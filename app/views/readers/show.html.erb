@@ -1,20 +1,45 @@
 <h2>Reader profile</h2>
-<%= @reader.firstName %>
-<%= @reader.lastName %>
-<br>
-<%= @reader.phoneNumber %>
-<br>
-<%= @reader.email %>
-<br>
-<%= @reader.age %>
-<br>
-<%= @reader.tShirtSize %>
-<br>
-<%= @reader.schoolFallName %>
-<br>
-<%= @reader.schoolFallGrade %>
-<br>
-<%= @reader.program %>
+<table class="readerTable">
+	<tr>
+		<th class="leftCol">First Name</th><th style="font-weight: bold;"><%= @reader.firstName %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">Last Name</th><th style="font-weight: bold;"><%= @reader.lastName %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">Phone</th><th><%= @reader.phoneNumber %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">Email</th><th><%= @reader.email %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">Age</th><th><%= @reader.age %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">TShirt Size</th><th><%= @reader.tShirtSize %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">School Name</th><th><%= @reader.schoolFallName %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">School Grade</th><th><%= @reader.schoolFallGrade %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">Program</th><th><%= @reader.program %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">Prize</th><th>
+			<%if (@reader.prize ==2) %> <%= "Level 2" %> 
+			<%elsif (@reader.prize ==1) %> <%= "Level 1" %> 
+			<%else %> <%= "None" %> 
+			<%end%>
+			</th>
+	</tr>
+	<tr>
+		<th></th><th  class="leftCol"><%= link_to 'Edit', [:edit, @reader] %></th>
+	</tr>
+</table>
+
 
 <% if @reader.books.count > 0 %>
 	<h5> Books (<%= @reader.books.count %>) :</h5>
@@ -28,15 +53,17 @@
 	<%end%>
 	<%end %>
 <% end%>
-
+<div style="width:50%; background-color: #EFEFEF;">
+	<div style="margin:10px;">
 </br>Form to add a new book
 <%= form_for(@book) do |f|%>
 	<%= render 'shared/error_messages', object: f.object%>
 	<div class="field">
-		<%= f.text_area :title, placeholder: "Add new book..."%>
+		<%= f.text_field :title, placeholder: "Add new book..."%>
 		<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
 	</div>
-	<%= f.submit "Add", class: 'btn btn-large btn-primary'%>
+	<%= f.submit "Add", class: 'btn btn-primary', style:'width:auto;'%>
 <%end %>
 <br>
-<%= link_to 'Edit', [:edit, @reader] %>
+</div>
+</div>
