@@ -31,7 +31,7 @@ class Reader < ActiveRecord::Base
   
   def self.search1(search)
     if search
-      self.where(['lastName like ? or firstName like ?', search ,search])
+      self.where(['\'lastName\' like ? or \'firstName\' like ?', search ,search])
     else
       self.all
     end
@@ -44,20 +44,20 @@ class Reader < ActiveRecord::Base
     all=Array.new
     
     if name != ''
-      strings.push 'lastName like ? or firstName like ?'
+      strings.push '\'lastName\' like ? or \'firstName\' like ?'
       condition.push name
       condition.push name 
     end
      if schoolFallName != ''
-      strings.push 'schoolFallName like ?'
+      strings.push '\'schoolFallName\' like ?'
       condition.push schoolFallName
     end
      if schoolFallGrade != ''
-      strings.push 'schoolFallGrade like ?'
+      strings.push '\'schoolFallGrade\' like ?'
       condition.push schoolFallGrade
     end
     if prize != ''
-      strings.push 'prize like ?'
+      strings.push '\'prize\' like ?'
       condition.push prize
     end
     
