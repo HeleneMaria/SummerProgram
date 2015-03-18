@@ -29,9 +29,11 @@ class SearchController < ApplicationController
   
   def exportAll
     puts"controller search--------------------------------"
-      
-    @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade])
-            
+    if params[:schoolFallName] or params[:schoolFallGrade] or params[:name]  
+      @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade])
+    else
+      @readers = Reader.all
+    end
     
     respond_to do |format|
       format.html
