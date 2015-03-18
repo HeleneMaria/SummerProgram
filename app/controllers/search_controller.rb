@@ -30,7 +30,7 @@ class SearchController < ApplicationController
   def exportAll
     puts"controller search--------------------------------"
       
-    @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade] ,params[:prize])
+    @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade])
             
     
     respond_to do |format|
