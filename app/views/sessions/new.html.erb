@@ -1,15 +1,20 @@
-<h2>Sign in</h2>
-<div class="row">
-	<div class="span 6 offset 3">
-		<%= form_for(:session, url: sessions_path) do |f| %>
+<div class="center hero-unit">
+	<h1>Elmwood Park Public Library</h1>
+	<h2>Summer Reading module</h2>
+	<div class="row">
 		
-			<%= f.label :username %>
-			<%= f.text_field :username %>
+		<div class="span 6 offset 3">
+			<%= form_for(:session, url: sessions_path) do |f| %>
 			
-			<%= f.label :password %>
-			<%= f.text_field :password %>
-			
-			<%=f.submit "Sign in", class: "btn btn-large btn-primary"%>
-		<%end%>
+				<%= f.label :username %>
+				<%= f.text_field :username %>
+				
+				<%= f.label :password %>
+				<%= f.text_field :password %>
+				
+				<%=f.submit "Sign in", class: "btn btn-large btn-primary"%>
+			<%end%>
+		</div>
+		Forgot credentials? Send an email to helene.maria2209@gmail.com
 	</div>
 </div>

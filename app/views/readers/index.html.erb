@@ -1,7 +1,7 @@
 <h2>All Readers</h2>
 
 <%= will_paginate %>
-
+<%=link_to 'Add new Reader', addNewReader_path %>
 <ul class="readers">
 	<% @readers.each do |reader| %>
 	<li>

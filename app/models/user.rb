@@ -4,4 +4,12 @@ class User < ActiveRecord::Base
   
   validates :username, presence:true, uniqueness:{ case_sensitive: false}
   validates :password, presence:true,length: {minimum: 6}
+  
+  before_save :create_remember_token
+  
+  #all methods under private are automatically hidden (no possibility to see it in the console for example)
+  private 
+  def create_remember_token #for the sign_in to be persistent even after the browser is closed
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
 end

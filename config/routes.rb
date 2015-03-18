@@ -15,9 +15,12 @@ Rails.application.routes.draw do
  get '/searchReaders', to: 'search#search'
  
  get '/searchExportAll', to: 'search#exportAll'
+  get '/editUser', to: 'users#edit'
  
  post 'books/create'
  post 'searchReaders', to: 'search#search'
+ 
+
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

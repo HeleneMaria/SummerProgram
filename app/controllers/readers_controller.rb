@@ -1,4 +1,6 @@
 class ReadersController < ApplicationController
+  before_filter :signed_in_user
+  
   
   def destroy
     Reader.find(params[:id]).destroy
@@ -51,6 +53,7 @@ class ReadersController < ApplicationController
   
   def create
     @reader = Reader.new(reader_param)
+    @reader.prize = 0
     if @reader.newSchoolFallName != ""
         puts "if @reader.newSchoolFallName"
       @reader.schoolFallName =@reader.newSchoolFallName
@@ -74,4 +77,9 @@ class ReadersController < ApplicationController
     params.require(:reader).permit(:firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize, :newSchoolFallName, :books, :prize)
   end
   
+  
+  private
+  def signed_in_user
+    redirect_to signin_path, notice: "Please sign in." unless signed_in?
+  end
 end
