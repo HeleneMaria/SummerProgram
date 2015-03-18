@@ -5,9 +5,9 @@ class SearchController < ApplicationController
     puts"controller search--------------------------------"
     if params[:name] #comes from home or search
       puts "#comes from home or search"
-      if params[:schoolFallName] or params[:schoolFallGrade] or params[:prize] #comes from search
+      if params[:schoolFallName] or params[:schoolFallGrade] #comes from search
         puts "#comes from search"
-         @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade] ,params[:prize])
+         @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade])
         if @readers !=nil
           @readers = @readers.paginate(:page => params[:page], :per_page => 10)
         end

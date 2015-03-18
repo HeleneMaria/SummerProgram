@@ -10,7 +10,7 @@ class ReadersController < ApplicationController
   
   def index
     if params[:schoolFallName] or params[:schoolFallGrade] or params[:prize]
-      @readers = Reader.search2(params[:schoolFallName] , params[:schoolFallGrade] ,params[:prize])
+      @readers = Reader.search2(params[:schoolFallName] , params[:schoolFallGrade])
       if @readers !=nil
         @readers = @readers.paginate(:page => params[:page], :per_page => 10)
       end

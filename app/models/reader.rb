@@ -38,7 +38,7 @@ class Reader < ActiveRecord::Base
   
   end
   
-  def self.search2(name,schoolFallName,schoolFallGrade,prize)
+  def self.search2(name,schoolFallName,schoolFallGrade)
     strings = Array.new
     condition = Array.new
     all=Array.new
@@ -55,10 +55,6 @@ class Reader < ActiveRecord::Base
      if schoolFallGrade != ""
       strings.push "\"schoolFallGrade\" like ?"
       condition.push schoolFallGrade
-    end
-    if prize != ""
-      strings.push "\"prize\" like ?"
-      condition.push prize
     end
     
     condition.insert(0,strings.join(" or "))

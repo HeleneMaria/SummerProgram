@@ -2,17 +2,14 @@
 
 
 <%= form_tag searchReaders_path, :method => 'get' do %>
-<%= label_tag "Name","Name", style: "width:20% !important;margin-left:2%;" %>
-	<%= label_tag "schoolFallName","schoolFallName", style: "width:20% !important;margin-left:5%;" %>
-	<%= label_tag "schoolFallGrade","schoolFallGrade", style: "width:20% !important;margin-left:5%;" %>
-	<%= label_tag "prize","prize", style: "width:20% !important;margin-left:5%;" %>
+	<%= label_tag "Name","Name", style: "width:29% !important;margin-left:2%;" %>
+	<%= label_tag "schoolFallName","School Fall Name", style: "width:29% !important;margin-left:5%;" %>
+	<%= label_tag "schoolFallGrade","School Fall Grade", style: "width:29% !important;margin-left:5%;" %>
 	
-	
-	 <%= text_field_tag :name, params[:name], :id => 'search_Name_field', style: "width:20% !important;margin-left:2%;"  %>
-     <%= text_field_tag :schoolFallName, params[:schoolFallName], :id => 'search_schoolFallName_field', style: "width:20% !important;margin-left:5%;" %>
-     <%= text_field_tag :schoolFallGrade, params[:schoolFallGrade], :id => 'search_schoolFallGrade_field', style: "width:20% !important;margin-left:5%;" %>
-     <%= text_field_tag :prize, params[:prize], :id => 'search_prize_field', style: "width:20% !important;margin-left:5%;" %>
-     <br>
+	 <%= text_field_tag :name, params[:name], :id => 'search_Name_field', style: "width:29% !important;margin-left:2%;"  %>
+     <%= text_field_tag :schoolFallName, params[:schoolFallName], :id => 'search_schoolFallName_field', style: "width:29% !important;margin-left:5%;" %>
+     <%= text_field_tag :schoolFallGrade, params[:schoolFallGrade], :id => 'search_schoolFallGrade_field', style: "width:29% !important;margin-left:5%;" %>
+       <br>
      <%= submit_tag "Search", :name => nil,class: "btn btn-primary", style: "width: auto;float:right;" %> 
 <% end %> 
 
