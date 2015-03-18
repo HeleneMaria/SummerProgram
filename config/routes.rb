@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   resources :readers
   resources :books, only: [:create, :destroy]
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   root to: 'static_pages#home'
   
   get '/about', to: 'static_pages#about'
-  get '/signin', to: 'static_pages#signin'
+  get '/signin', to: 'sessions#new'
+  get '/signout', to: 'sessions#destroy', via: :delete
 
  get '/addNewReader', to: 'readers#new'
  get '/allReaders', to: 'readers#index'
