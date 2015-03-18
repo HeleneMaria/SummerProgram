@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   
   get '/about', to: 'static_pages#about'
+  get '/signin', to: 'static_pages#signin'
 
  get '/addNewReader', to: 'readers#new'
  get '/allReaders', to: 'readers#index'
