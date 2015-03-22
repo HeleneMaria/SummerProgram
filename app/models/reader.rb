@@ -15,7 +15,6 @@
 #  age               :integer
 #  tShirtSize        :string
 #  newSchoolFallName :string
-#  prize             :integer
 #
 
 class Reader < ActiveRecord::Base
@@ -63,7 +62,11 @@ class Reader < ActiveRecord::Base
 
     self.select([:id, :firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize]).where(condition)
   end
-
+  
+  def prize
+    Prize.select([:level]).where(["\"reader_id\" = ? ", self.id])
+  end
+  
   def self.as_csv_all(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
@@ -88,11 +91,16 @@ class Reader < ActiveRecord::Base
       
     CSV.generate(options) do |csv|
       collection_books = ["id","firstName","lastName","phoneNumber","email","schoolFallName","schoolFallGrade","program","age","tShirtSize","prize","nbOfBooks"]
-      collection = ["id","firstName","lastName","phoneNumber","email","schoolFallName","schoolFallGrade","program","age","tShirtSize","prize"]
+      collection = ["id","firstName","lastName","phoneNumber","email","schoolFallName","schoolFallGrade","program","age","tShirtSize"]
   
       csv << collection_books
+      
      all.each do |item|
-        csv << (item.attributes.values_at(*collection).push(item.books.count))
+       id = Prize.select(:id).where(reader_id: item.id).to_a #a simple where sends back a activerecord:relation instead of an activerecord
+         @prize = Prize.find(id.first)
+       attributes = item.attributes.values_at(*collection).push(@prize.level)
+       attributes.push(item.books.count)
+        csv << (attributes)
         puts item.books.count
       end
     end

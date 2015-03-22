@@ -29,8 +29,8 @@
 	</tr>
 	<tr>
 		<th class="leftCol">Prize</th><th>
-			<%if (@reader.prize ==2) %> <%= "Level 2" %> 
-			<%elsif (@reader.prize ==1) %> <%= "Level 1" %> 
+			<%if (@prize.level ==2) %> <%= "Level 2" %> 
+			<%elsif (@prize.level ==1) %> <%= "Level 1" %> 
 			<%else %> <%= "None" %> 
 			<%end%>
 			</th>
@@ -62,7 +62,19 @@
 		<%= f.text_field :title, placeholder: "Add new book..."%>
 		<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
 	</div>
-	<%= f.submit "Add", class: 'btn btn-primary', style:'width:auto;'%>
+	<%= f.submit "Add book", class: 'btn btn-primary', style:'width:auto;'%>
+<%end %>
+
+<%= form_for(@prize) do |f|%>
+			<table class="readerTable">
+			<tr>
+				<th><%= f.radio_button :level, 0%> </th><th><%= f.label :level, 'None',{:value => 0, :style=> "font-weight: 400;"}%></th>
+				<th><%= f.radio_button :level, 1%> </th><th><%= f.label :level, 'Level 1',{:value => 1, :style=> "font-weight: 400;"}%></th>
+				<th><%= f.radio_button :level, 2%> </th><th><%= f.label :level, 'Level 2',{:value => 2, :style=> "font-weight: 400;"} %></th>
+			</tr>
+			</table>
+			<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
+<%= f.submit "Save prize", class: 'btn btn-primary', style:'width:auto;'%>
 <%end %>
 <br>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318214238) do
+ActiveRecord::Schema.define(version: 20150322202653) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20150318214238) do
   end
 
   add_index "books", ["reader_id", "created_at"], name: "index_books_on_reader_id_and_created_at"
+
+  create_table "prizes", force: :cascade do |t|
+    t.integer  "level"
+    t.integer  "reader_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "prizes", ["reader_id"], name: "index_prizes_on_reader_id"
 
   create_table "readers", force: :cascade do |t|
     t.string   "firstName"
@@ -35,7 +44,6 @@ ActiveRecord::Schema.define(version: 20150318214238) do
     t.integer  "age"
     t.string   "tShirtSize"
     t.string   "newSchoolFallName"
-    t.integer  "prize"
   end
 
   create_table "users", force: :cascade do |t|

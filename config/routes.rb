@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  
+
   resources :readers
   resources :books, only: [:create, :destroy]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :prizes
 
   root to: 'static_pages#home'
   
@@ -18,9 +21,10 @@ Rails.application.routes.draw do
   get '/editUser', to: 'users#edit'
  
  post 'books/create'
+ post 'prizes/update'
  post 'searchReaders', to: 'search#search'
  
-
+ 
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

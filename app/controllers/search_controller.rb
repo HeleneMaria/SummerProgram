@@ -31,18 +31,11 @@ class SearchController < ApplicationController
     puts"controller search--------------------------------"
     if params[:schoolFallName] or params[:schoolFallGrade] or params[:name]  
       @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade])
-      #@readers = Reader.find_by_sql"select id, firstName, lastname from readers where firstname = 'first'"
-      #@readers = Reader.select("id, firstName, lastName, phoneNumber, email, schoolFallName, schoolFallGrade, program, age, tShirtSize").where("\"lastName\" like 'first' or \"firstName\" like 'first'")
-     #transform the sql query to a CSV
-      #csv = CsvExport.new(@readers,[:id, :firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize]).generate
-      
-     # csv = @readers.as_csv(["id","firstName","lastName","phoneNumber","email","schoolFallName","schoolFallGrade","program","age","tShirtSize","prize"])
      csv = @readers.as_csv_books
-      puts @readers.as_csv_all
       
           else
       @readers = Reader.all
-      csv = @readers.as_csv_all
+      csv = @readers.as_csv_books
     end
     
     respond_to do |format|
@@ -59,18 +52,3 @@ class SearchController < ApplicationController
   
 end
 
-class CsvExport
-  def initialize(collection, attributes=[])
-    @collection, @attributes = collection, attributes
-  end
-
-  def generate
-    CSV.generate do |csv|
-      csv << attributes.map(&:to_s)
-      @collection.each do |record|
-        csv << record.attributes.values_at(*@attributes)
-        puts record
-      end
-    end
-  end
-end

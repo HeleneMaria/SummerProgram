@@ -32,7 +32,6 @@ class ReadersController < ApplicationController
   
   def update
     @reader = Reader.find(params[:id])
-    puts " PRIIIIIIZE : "+reader_param[:prize]
     if @reader.update_attributes(reader_param)
       if @reader.newSchoolFallName != ""
         @reader.schoolFallName =@reader.newSchoolFallName
@@ -49,17 +48,22 @@ class ReadersController < ApplicationController
   def show
     @reader = Reader.find(params[:id])
     @book = @reader.books.build
+    id = Prize.select(:id).where(reader_id: params[:id]).to_a #a simple where sends back a activerecord:relation instead of an activerecord
+    @prize = Prize.find(id.first)
+    puts @prize
   end
   
   def create
     @reader = Reader.new(reader_param)
-    @reader.prize = 0
     if @reader.newSchoolFallName != ""
         puts "if @reader.newSchoolFallName"
       @reader.schoolFallName =@reader.newSchoolFallName
       @reader.newSchoolFallName=nil
+      
     end
     if @reader.save
+      @prize = Prize.new(level:0,reader_id:@reader.id)
+      @prize.save
       flash[:success] = "New reader added"
       redirect_to @reader
     else
