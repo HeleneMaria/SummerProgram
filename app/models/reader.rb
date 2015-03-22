@@ -59,20 +59,47 @@ class Reader < ActiveRecord::Base
     
     condition.insert(0,strings.join(" or "))
     puts condition
+    
+
     self.select([:id, :firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize]).where(condition)
   end
 
-
-
-
-def self.as_csv(options = {})
-  CSV.generate(options) do |csv|
-    csv << column_names
-    all.each do |item|
-      csv << item.attributes.values_at(*column_names)
+  def self.as_csv_all(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |item|
+        csv << item.attributes.values_at(*column_names)
+      end
     end
   end
-end
+  
+  
+  
+  def self.as_csv(options = {}, collection)
+    CSV.generate(options) do |csv|
+      csv << collection
+      all.each do |item|
+        csv << item.attributes.values_at(*collection)
+      end
+    end
+  end
+
+  def self.as_csv_books(options={})
+      
+    CSV.generate(options) do |csv|
+      collection_books = ["id","firstName","lastName","phoneNumber","email","schoolFallName","schoolFallGrade","program","age","tShirtSize","prize","nbOfBooks"]
+      collection = ["id","firstName","lastName","phoneNumber","email","schoolFallName","schoolFallGrade","program","age","tShirtSize","prize"]
+  
+      csv << collection_books
+     all.each do |item|
+        csv << (item.attributes.values_at(*collection).push(item.books.count))
+        puts item.books.count
+      end
+    end
+  end
+  
+ 
+
 end
 
 
