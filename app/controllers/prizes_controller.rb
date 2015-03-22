@@ -1,6 +1,6 @@
 class PrizesController < ApplicationController
   def update
-     id = Prize.select(:id).where(reader_id: params[:id]).to_a #a simple where sends back a activerecord:relation instead of an activerecord
+     id = Prize.select(:id).where(reader_id: params[:reader_id]).to_a #a simple where sends back a activerecord:relation instead of an activerecord
     @prize = Prize.find(id.first)
     @current_reader = Reader.find(@prize.reader_id)
       if @prize.update_attributes(prize_param)
