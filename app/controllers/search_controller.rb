@@ -31,17 +31,15 @@ class SearchController < ApplicationController
     puts"controller search--------------------------------"
     if params[:schoolFallName] or params[:schoolFallGrade] or params[:name]  
       @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade])
-     csv = @readers.as_csv_books
       
           else
       @readers = Reader.all
-      csv = @readers.as_csv_books
     end
     
     respond_to do |format|
       format.html
-      format.csv { send_data csv }
-      format.xls { send_data csv(col_sep: "\t")  }
+      format.csv { send_data @readers.as_csv_books }
+      format.xls { send_data @readers.as_csv_books(col_sep: "\t")  }
     end
   end
   
