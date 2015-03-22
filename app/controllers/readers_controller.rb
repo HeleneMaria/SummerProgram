@@ -50,7 +50,6 @@ class ReadersController < ApplicationController
     @book = @reader.books.build
     id = Prize.select(:id).where(reader_id: params[:id]).to_a #a simple where sends back a activerecord:relation instead of an activerecord
     @prize = Prize.find(id.first)
-    puts @prize
   end
   
   def create
