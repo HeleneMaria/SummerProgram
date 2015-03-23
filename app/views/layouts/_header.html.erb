@@ -1,20 +1,26 @@
 <header class = "navbar navbar-fixed-top">
 	<div class="navbar-inner">
-		<div class="container">
-			<%= link_to "Summer Reading Program", root_path, id: "logo"%>
+		<div class="container container-header">
+			<%= link_to image_tag("eppl-logo.png", style:"height:40px;float:left;"), root_path%>
+			<%= link_to "Elmwood Park Public Library", root_path, id: "logo"%>
 			<nav>
 				<ul class="nav pull-right">
 					<% if signed_in? %>
-					<li><%= link_to "Home", root_path %></li>
+					<li<% if current_page?(controller: 'static_pages', action: 'home') %> class="current"<%end %>>
+					<%= link_to "Home", root_path %>
+					</li>
 					<%end%>
-					<li><%= link_to "About", about_path %></li>
 					<% if signed_in? %>
-					<li><%= link_to "Search", searchReaders_path %></li>
-					<li><%= link_to "Readers", readers_path %></li>
-					<li><%= link_to "Sign out", signout_path%></li>
+					<li<% if current_page?(controller: 'search', action: 'search') %> class="current"<%end %>>
+					<%= link_to "Search", searchReaders_path %></li>
+					<li<% if current_page?(controller: 'readers', action: 'index') %> class="current"<%end %>>
+					<%= link_to "Readers", readers_path %></li>
+					<li<% if current_page?(controller: 'sessions', action: 'destroy') %> class="current"<%end %>>
+					<%= link_to "Sign out", signout_path%></li>
 					<li><%= link_to @current_user.username, editUser_path%></li>
 					<%else%>
-					<li><%= link_to "Sign in", signin_path %></li>
+					<li<% if current_page?(controller: 'sessions', action: 'new') %> class="current"<%end %>
+					><%= link_to "Sign in", signin_path %></li>
 					<%end %>
 				</ul>
 			</nav>

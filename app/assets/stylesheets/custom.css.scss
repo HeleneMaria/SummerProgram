@@ -1,5 +1,8 @@
 @import "bootstrap";
-
+/* orange #e08a3d
+ * bleu #89b3c1
+ * vert #bfca74
+ */
 section {
 	overflow:auto;
 }
@@ -15,9 +18,33 @@ textarea {
 	}
 }
 
+.container{
+  background-color:rgb(239, 239, 239);
+  border-left: 25px solid #ffffff;
+  border-right: 25px solid #ffffff;
+  margin: 0 auto;
+}
+
+.container-header{
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(rgb(191, 202, 116) 0%, rgb(152, 165, 65) 100%);
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.btn{
+  color:white;
+  background-color:#89b3c1;
+  border-color: #577179;
+}
+
+.btn:hover{
+  background-color:#577179;
+}
 
 body{
-	paddint-top: 60px;
+	padding-top: 40px;
+	background-color: #89b3c1;
 }
 
 .center{
@@ -64,11 +91,12 @@ p{
 #logo{
 	float:left;
 	margin-right:10px;
-	font-size:1.7em;
-	color:#222;
+	font-size:1.3em;
+	font-family: initial;
+  color: #4E7A87;
 	text-transform:uppercase;
 	letter-spacing:-1px;
-	padding-top: 9px;
+	padding-top: 13px;
 	font-weight: bold;
 	line-height: 1;
 	&:hover{
@@ -77,6 +105,27 @@ p{
 	}
 }
 
+nav{
+  display:inline;
+}
+.nav li{
+  float: left;
+}
+
+.nav a:hover{
+    color: #bfca74;
+  }
+  
+.nav .current a{
+  color: white;
+}
+.current{
+  background-color:#d17a39;
+
+}
+.nav a{
+  color:white;
+}
 
 /* footer*/
 
@@ -106,8 +155,11 @@ footer{
 }
 
 /*custom*/
-.nav li{
-	float: left;
+
+
+.form{
+  width:40%;
+  margin:auto;
 }
 
 /* miscellaneous */
