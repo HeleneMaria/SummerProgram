@@ -73,7 +73,6 @@
 				<th><%= f.radio_button :level, 0%> </th><th><%= f.label :level, 'None',{:value => 0, :style=> "font-weight: 400;"}%></th>
 				<th><%= f.radio_button :level, 1%> </th><th><%= f.label :level, 'Level 1',{:value => 1, :style=> "font-weight: 400;"}%></th>
 				<th><%= f.radio_button :level, 2%> </th><th><%= f.label :level, 'Level 2',{:value => 2, :style=> "font-weight: 400;"} %></th>
-				<%=@reader.program%>
 				<% if (@reader.program == 'Teen program') %>
 				<th><%= f.radio_button :level, 3%> </th>
 				<th><%= f.label :level, 'Level 3',{:value => 3, :style=> "font-weight: 400;"} %></th>
