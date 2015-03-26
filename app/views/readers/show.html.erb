@@ -16,9 +16,6 @@
 		<th class="leftCol">Age</th><th><%= @reader.age %></th>
 	</tr>
 	<tr>
-		<th class="leftCol">TShirt Size</th><th><%= @reader.tShirtSize %></th>
-	</tr>
-	<tr>
 		<th class="leftCol">School Name</th><th><%= @reader.schoolFallName %></th>
 	</tr>
 	<tr>
@@ -28,12 +25,17 @@
 		<th class="leftCol">Program</th><th><%= @reader.program %></th>
 	</tr>
 	<tr>
-		<th class="leftCol">Prize</th><th>
-			<%if (@prize.level ==2) %> <%= "Level 2" %> 
+		<th class="leftCol">TShirt Size</th><th><%= @reader.tShirtSize %></th>
+	</tr>
+	<tr>
+		<th class="leftCol">Prize</th>
+		<th>
+			<%if (@prize.level ==3) %> <%= "Level 3" %> 
+			<%elsif (@prize.level ==2) %> <%= "Level 2" %> 
 			<%elsif (@prize.level ==1) %> <%= "Level 1" %> 
 			<%else %> <%= "None" %> 
 			<%end%>
-			</th>
+		</th>
 	</tr>
 	<tr>
 		<th></th><th  class="leftCol"><%= link_to 'Edit', [:edit, @reader] %></th>
@@ -71,6 +73,11 @@
 				<th><%= f.radio_button :level, 0%> </th><th><%= f.label :level, 'None',{:value => 0, :style=> "font-weight: 400;"}%></th>
 				<th><%= f.radio_button :level, 1%> </th><th><%= f.label :level, 'Level 1',{:value => 1, :style=> "font-weight: 400;"}%></th>
 				<th><%= f.radio_button :level, 2%> </th><th><%= f.label :level, 'Level 2',{:value => 2, :style=> "font-weight: 400;"} %></th>
+				<%=@reader.program%>
+				<% if (@reader.program == 'Teen program') %>
+				<th><%= f.radio_button :level, 3%> </th>
+				<th><%= f.label :level, 'Level 3',{:value => 3, :style=> "font-weight: 400;"} %></th>
+				<%end%>
 			</tr>
 			</table>
 			<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
@@ -79,3 +86,4 @@
 <br>
 </div>
 </div>
+

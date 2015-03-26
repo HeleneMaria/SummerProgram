@@ -37,7 +37,7 @@ class Reader < ActiveRecord::Base
   
   end
   
-  def self.search2(name,schoolFallName,schoolFallGrade)
+  def self.search2(name,schoolFallName,schoolFallGrade,program)
     strings = Array.new
     condition = Array.new
     all=Array.new
@@ -55,6 +55,10 @@ class Reader < ActiveRecord::Base
       strings.push "\"schoolFallGrade\" like ?"
       condition.push schoolFallGrade
     end
+    if program != ""
+      strings.push "\"program\" like ?"
+      condition.push program
+    end
     
     condition.insert(0,strings.join(" or "))
     puts condition
@@ -67,25 +71,6 @@ class Reader < ActiveRecord::Base
     Prize.select([:level]).where(["\"reader_id\" = ? ", self.id])
   end
   
-  def self.as_csv_all(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |item|
-        csv << item.attributes.values_at(*column_names)
-      end
-    end
-  end
-  
-  
-  
-  def self.as_csv(options = {}, collection)
-    CSV.generate(options) do |csv|
-      csv << collection
-      all.each do |item|
-        csv << item.attributes.values_at(*collection)
-      end
-    end
-  end
 
   def self.as_csv_books(options={})
       
@@ -106,8 +91,27 @@ class Reader < ActiveRecord::Base
     end
   end
   
- 
-
+ ####NOT USED ANYMORE#####
+  def self.as_csv_all(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |item|
+        csv << item.attributes.values_at(*column_names)
+      end
+    end
+  end
+  
+  
+  
+  def self.as_csv(options = {}, collection)
+    CSV.generate(options) do |csv|
+      csv << collection
+      all.each do |item|
+        csv << item.attributes.values_at(*collection)
+      end
+    end
+  end
+#############
 end
 
 

@@ -2,15 +2,18 @@
 
 
 <%= form_tag searchReaders_path, :method => 'get' do %>
-	<%= label_tag "Name","Name", style: "width:29% !important;margin-left:2%;" %>
-	<%= label_tag "schoolFallName","School Fall Name", style: "width:29% !important;margin-left:5%;" %>
-	<%= label_tag "schoolFallGrade","School Fall Grade", style: "width:29% !important;margin-left:5%;" %>
+	<%= label_tag "Name","Name", class:"searchBox" %>
+	<%= label_tag "schoolFallName","School Fall Name", class:"searchBox" %>
+	<%= label_tag "schoolFallGrade","School Fall Grade", class:"searchBox" %>
+	<%= label_tag "Program","Program",  class:"searchBox" %>
 	
-	 <%= text_field_tag :name, params[:name], :id => 'search_Name_field', style: "width:29% !important;margin-left:2%;"  %>
-     <%= text_field_tag :schoolFallName, params[:schoolFallName], :id => 'search_schoolFallName_field', style: "width:29% !important;margin-left:5%;" %>
-     <%= text_field_tag :schoolFallGrade, params[:schoolFallGrade], :id => 'search_schoolFallGrade_field', style: "width:29% !important;margin-left:5%;" %>
-       <br>
-     <%= submit_tag "Search", :name => nil,class: "btn btn-primary", style: "width: auto;float:right;" %> 
+	 <%= text_field_tag :name, params[:name], :id => 'search_Name_field', class:"searchBox"  %>
+     <%= text_field_tag :schoolFallName, params[:schoolFallName], :id => 'search_schoolFallName_field', class:"searchBox" %>
+     <%= text_field_tag :schoolFallGrade, params[:schoolFallGrade], :id => 'search_schoolFallGrade_field', class:"searchBox" %>
+    <!-- <%= text_field_tag :program, params[:program], :id => 'search_program_field0909', class:"searchBox" %>-->
+     <%= select_tag 'program', options_for_select(@programs, params[:program]), class:"searchBox dropdownSearch" %>  
+       
+     <%= submit_tag "Search", :name => nil,class: "btn btn-primary", style: "width: auto;float:right; height: 42px !important;" %> 
 <% end %> 
 
 <%= will_paginate @readers%>
@@ -26,7 +29,9 @@
 </ul>
 
 <%= link_to "Download CSV", searchExportAll_path(:name => params[:name],:schoolFallName=> params[:schoolFallName],
-:schoolFallGrade=> params[:schoolFallGrade], :prize=> params[:prize],format: "csv"), class: "btn btn-large btn-primary" %>
+:schoolFallGrade=> params[:schoolFallGrade], :program=> params[:program],format: "csv"), class: "btn btn-large btn-primary" %>
 <%= link_to "Download XLS", searchExportAll_path(:name => params[:name],:schoolFallName=> params[:schoolFallName],
-:schoolFallGrade=> params[:schoolFallGrade], :prize=> params[:prize],format: "xls"), class: "btn btn-large btn-primary" %>
+:schoolFallGrade=> params[:schoolFallGrade], :program=> params[:program],format: "xls"), class: "btn btn-large btn-primary" %>
+
+<%= link_to "Purge the users", searchDeleteAll_path, class: "btn btn-large btn-primary deleteAll", :data => {:confirm => "CAREFUL !!! Are you sure you want to delete ALL the readers?" } %>
 

@@ -31,9 +31,6 @@
 			<%= f.label :email %>
 			<%= f.text_field :email %>
 			
-			<%= f.label :tShirtSize %>
-			<%= f.text_field :tShirtSize %>
-			
 			<%= f.label :age %>
 			<%= f.text_field :age %>
 			
@@ -43,11 +40,13 @@
 			<%= f.text_field :newSchoolFallName,{ :style=> "display : none;"}%>
 			
 			<%= f.label :schoolFallGrade %>
-			<%= f.text_field :schoolFallGrade %>
+			<%= f.select :schoolFallGrade, @grade, :selected => @reader.schoolFallGrade %>
 			
 			<%= f.label :program %>
 			<%= f.select :program, @programs, :selected => @reader.program %>
 			
+			<%= f.label :tShirtSize %>
+			<%= f.select :tShirtSize, @size, :selected => @reader.tShirtSize %>
 			
   			
   			

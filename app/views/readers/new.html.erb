@@ -32,9 +32,6 @@
 			<%= f.label :email %>
 			<%= f.text_field :email %>
 			
-			<%= f.label :tShirtSize %>
-			<%= f.text_field :tShirtSize %>
-			
 			<%= f.label :age %>
 			<%= f.text_field :age %>
 			
@@ -44,12 +41,13 @@
 			<%= f.text_field :newSchoolFallName%>
 			
 			<%= f.label :schoolFallGrade %>
-			<%= f.text_field :schoolFallGrade %>
+			<%= f.select :schoolFallGrade, options_for_select(@grade)%>
 			
 			<%= f.label :program %>
 			<%= f.select :program, options_for_select(@programs) %>
 
-
+			<%= f.label :tShirtSize %>
+			<%= f.select :tShirtSize, options_for_select(@size) %>
 			
 			<%=f.submit "Create the reader", class: "btn btn-large btn-primary"%>
 		<% end %>

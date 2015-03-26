@@ -27,7 +27,8 @@ class ReadersController < ApplicationController
     @reader = Reader.find(params[:id])
     @schools = Reader.select(:schoolFallName).distinct
     @programs = ["Baby program","Kids program", "Pre-Teen program", "Teen program"]
-    
+    @grade = ["None","Pre-School","Pre-Kindergarten","Kindergarten","1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th"]
+    @size = ["Youth Small","Youth Medium","Youth Large","Adult Small","Adult Medium","Adult Large","Adult X-Large","Adult 2 X-Large","Adult 3 X-Large"]
   end
   
   def update
@@ -74,6 +75,8 @@ class ReadersController < ApplicationController
    @reader = Reader.new
    @schools = Reader.select(:schoolFallName).distinct
    @programs = ["Baby program","Kids program", "Pre-Teen program", "Teen program"]
+       @grade = ["None","Pre-School","Pre-Kindergarten","Kindergarten","1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th"]
+    @size = ["Youth Small","Youth Medium","Youth Large","Adult Small","Adult Medium","Adult Large","Adult X-Large","Adult 2 X-Large","Adult 3 X-Large"]
   end
   
   def reader_param

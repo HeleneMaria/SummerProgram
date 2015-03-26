@@ -18,6 +18,7 @@ Rails.application.routes.draw do
  get '/searchReaders', to: 'search#search'
  
  get '/searchExportAll', to: 'search#exportAll'
+ get '/searchDeleteAll', to: 'search#deleteAll'
   get '/editUser', to: 'users#edit'
  
  post 'books/create'
