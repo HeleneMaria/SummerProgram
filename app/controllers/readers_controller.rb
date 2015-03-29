@@ -80,7 +80,7 @@ class ReadersController < ApplicationController
   end
   
   def reader_param
-    params.require(:reader).permit(:firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize, :newSchoolFallName, :books, :prize)
+    params.require(:reader).permit(:firstName, :lastName, :phoneNumber, :email, :schoolFallName, :schoolFallGrade, :program, :age, :tShirtSize, :newSchoolFallName, :books, :prize, :notes)
   end
   
   

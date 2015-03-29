@@ -15,6 +15,7 @@
 #  age               :integer
 #  tShirtSize        :string
 #  newSchoolFallName :string
+#  notes             :string
 #
 
 class Reader < ActiveRecord::Base

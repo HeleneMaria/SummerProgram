@@ -48,7 +48,8 @@
 			<%= f.label :tShirtSize %>
 			<%= f.select :tShirtSize, @size, :selected => @reader.tShirtSize %>
 			
-  			
+  			<%= f.label :notes %>
+			<%= f.text_field :notes %>
   			
 			<%=f.submit "Update the reader", class: "btn btn-large btn-primary"%>
 		<% end %>

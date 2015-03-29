@@ -49,6 +49,9 @@
 			<%= f.label :tShirtSize %>
 			<%= f.select :tShirtSize, options_for_select(@size) %>
 			
+			<%= f.label :notes %>
+			<%= f.text_field :notes %>
+			
 			<%=f.submit "Create the reader", class: "btn btn-large btn-primary"%>
 		<% end %>
 	</div>

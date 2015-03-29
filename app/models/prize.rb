@@ -9,6 +9,7 @@
 #  updated_at :datetime         not null
 #
 
+
 class Prize < ActiveRecord::Base
     belongs_to :reader
 end
