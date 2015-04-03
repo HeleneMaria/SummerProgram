@@ -6,7 +6,7 @@
 	<% @readers.each do |reader| %>
 	<li>
 	<%=link_to reader.firstName+" "+reader.lastName, reader%>
-	| <%=link_to 'Delete', reader, method: :delete, confirm: "Are you sure?" %>
+	| <%=link_to 'Delete', reader, method: :delete,  data: {confirm: "Are you sure?"}  %>
 	</li>
 	<% end %>
 </ul>
