@@ -27,7 +27,7 @@ class Reader < ActiveRecord::Base
   PHONE_NUMBER_REGEX = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
  # validates :phoneNumber, format:{ with: PHONE_NUMBER_REGEX }
   EMAIL_REGEX=/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/
-  validates :email, presence: true, uniqueness: {case_sensitive:false}#, format: { with: EMAIL_REGEX}
+  validates :email, presence: true#, format: { with: EMAIL_REGEX}
   
   def self.search1(search)
     if search
