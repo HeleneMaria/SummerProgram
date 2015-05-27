@@ -1,0 +1,43 @@
+
+.openinghours-open {
+	background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #3C763D;
+	padding-bottom: 10px;
+    padding-top: 15px;
+}
+
+.openinghours-closed {
+   	background-color: #F2DEDE;
+    border-color: #EBCCD1;
+    color: #A94442;
+	padding-bottom: 10px;
+    padding-top: 15px;
+}
+.openinghours-notes, .openinghours-open, .openinghours-closed {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+}
+
+.openinghours {
+	margin:auto;
+}
+
+.openinghours-eachday {
+	display: inline-block;
+	width: 100%;
+}
+.openinghours-day {
+	float: left; 
+	overflow: hidden;
+}
+.openinghours-date {
+	float: left;
+	overflow: hidden; 
+}
+.openinghours-time {
+	float: right; 
+	overflow: hidden;
+}
+

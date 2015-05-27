@@ -5,7 +5,6 @@ class SearchController < ApplicationController
     @programs = ["","Baby program","Kids program", "Pre-Teen program", "Teen program"]
     puts"controller search--------------------------------"
     if params[:name] #comes from home or search
-      puts "#comes from home or search "+params[:program]
       if params[:schoolFallName] or params[:schoolFallGrade] or params[:program] #comes from search
         puts "#comes from search"
          @readers = Reader.search2(params[:name],params[:schoolFallName] , params[:schoolFallGrade],params[:program])
