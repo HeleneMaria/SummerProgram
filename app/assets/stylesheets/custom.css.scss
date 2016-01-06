@@ -234,3 +234,23 @@ input, textarea, select, .uneditable-input {
 .leftCol{
       text-align:right;
     }
+    
+
+/*style on the order button on the allreader page*/
+.pretty .currentSort {
+  
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty a {
+  background-color:white;
+  padding-right: 12px;
+}
+
+.pretty .asc{
+  background-image: url(/up_arrow.gif);
+}
+.pretty .desc{
+  background-image: url(/down_arrow.gif);
+}

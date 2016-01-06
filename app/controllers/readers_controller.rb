@@ -8,6 +8,7 @@ class ReadersController < ApplicationController
     redirect_to readers_path
   end
   
+  helper_method :sort_column, :sort_direction
   def index
     if params[:schoolFallName] or params[:schoolFallGrade] or params[:prize]
       @readers = Reader.search2(params[:schoolFallName] , params[:schoolFallGrade])
@@ -18,7 +19,7 @@ class ReadersController < ApplicationController
     @readers = Reader.search1(params[:search])
     @readers = @readers.paginate(:page => params[:page], :per_page => 10)
     else
-      @readers = Reader.all
+      @readers = Reader.all.order(sort_column + ' ' + sort_direction)
       @readers = @readers.paginate(:page => params[:page], :per_page => 10)
     end
   end
@@ -88,4 +89,15 @@ class ReadersController < ApplicationController
   def signed_in_user
     redirect_to signin_path, notice: "Please sign in." unless signed_in?
   end
+  
+  private
+  def sort_column
+    Reader.column_names.include?(params[:sort]) ? params[:sort] : "firstname"
+  end
+  
+  private
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+  
 end
