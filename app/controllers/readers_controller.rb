@@ -92,7 +92,7 @@ class ReadersController < ApplicationController
   
   private
   def sort_column
-    Reader.column_names.include?(params[:sort]) ? params[:sort] : "firstname"
+    Reader.column_names.include?(params[:sort]) ? params[:sort] : "firstName"
   end
   
   private
