@@ -19,7 +19,7 @@ class ReadersController < ApplicationController
     @readers = Reader.search1(params[:search])
     @readers = @readers.paginate(:page => params[:page], :per_page => 10)
     else
-      @readers = Reader.all.order(sort_column + ' ' + sort_direction)
+      @readers = Reader.all.order('"'+sort_column + '" ' + sort_direction)
       @readers = @readers.paginate(:page => params[:page], :per_page => 10)
     end
   end
@@ -92,7 +92,7 @@ class ReadersController < ApplicationController
 
   private
   def sort_column
-    Reader.column_names.include?(params[:sort]) ? params[:sort] : "\"lastName\""
+    Reader.column_names.include?(params[:sort]) ? params[:sort] : "firstName"
   end
 
   private
