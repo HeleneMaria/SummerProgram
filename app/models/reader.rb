@@ -44,7 +44,7 @@ class Reader < ActiveRecord::Base
     all=Array.new
 
     if name != ""
-      strings.push "\"lastName\" = ? or \"firstName\" = ? or \"firstName\"||\" \"||\"lastName\" = ?"
+      strings.push "\"lastName\" = ? or \"firstName\" = ? or \"firstName\"||\' \'||\"lastName\" = ?"
       condition.push name
       condition.push name
       condition.push name
