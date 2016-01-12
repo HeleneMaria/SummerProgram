@@ -1,6 +1,8 @@
 <div class="center hero-unit">
 	<h2>Summer Reading module</h2>
+	<% if current_user.admin? %>
 	<%= link_to "Create Reader", addNewReader_path, class: "btn btn-large btn-primary" %>
+	<%end%>
 	<br>
 	<br>
 	<div style="text-align: center;">
@@ -13,7 +15,7 @@
 	</div>
 	<br>
 	<%= link_to "View all Readers", allReaders_path, class: "btn btn-large btn-primary" %>
-	
-			
-		
+
+
+
 </div>

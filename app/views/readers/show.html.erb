@@ -33,59 +33,66 @@
 	<tr>
 		<th class="leftCol">Prize</th>
 		<th>
-			<%if (@prize.level ==3) %> <%= "Level 3" %> 
-			<%elsif (@prize.level ==2) %> <%= "Level 2" %> 
-			<%elsif (@prize.level ==1) %> <%= "Level 1" %> 
-			<%else %> <%= "None" %> 
+			<%if (@prize.level ==3) %> <%= "Level 3" %>
+			<%elsif (@prize.level ==2) %> <%= "Level 2" %>
+			<%elsif (@prize.level ==1) %> <%= "Level 1" %>
+			<%else %> <%= "None" %>
 			<%end%>
 		</th>
 	</tr>
+	<% if current_user.admin? %>
 	<tr>
 		<th></th><th  class="leftCol"><%= link_to 'Edit', [:edit, @reader] %></th>
 	</tr>
+	<% end %>
 </table>
 
 
 <% if @reader.books.count > 0 %>
 	<h5> Books (<%= @reader.books.count %>) :</h5>
 	<% @reader.books.each do |book|%>
-	<% if book.title  %><li> <%= book.title %> | <%= link_to "delete", book, method: :delete,
+	<% if book.title  %><li> <%= book.title %> |
+		<% if current_user.admin? %>
+			<%= link_to "delete", book, method: :delete,
 														 confirm: "You Sure?",
 														 title: book.title,
 														 :id => book.id
 														 %>
+    <% end %>
 		</li>
 	<%end%>
 	<%end %>
 <% end%>
-<div style="width:50%; background-color: #EFEFEF;">
-	<div style="margin:10px;">
-</br>Form to add a new book
-<%= form_for(@book) do |f|%>
-	<%= render 'shared/error_messages', object: f.object%>
-	<div class="field">
-		<%= f.text_field :title, placeholder: "Add new book..."%>
-		<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
-	</div>
-	<%= f.submit "Add book", class: 'btn btn-primary', style:'width:auto;'%>
-<%end %>
-
-<%= form_for(@prize) do |f|%>
-			<table class="readerTable">
-			<tr>
-				<th><%= f.radio_button :level, 0%> </th><th><%= f.label :level, 'None',{:value => 0, :style=> "font-weight: 400;"}%></th>
-				<th><%= f.radio_button :level, 1%> </th><th><%= f.label :level, 'Level 1',{:value => 1, :style=> "font-weight: 400;"}%></th>
-				<th><%= f.radio_button :level, 2%> </th><th><%= f.label :level, 'Level 2',{:value => 2, :style=> "font-weight: 400;"} %></th>
-				<% if (@reader.program == 'Teen program') %>
-				<th><%= f.radio_button :level, 3%> </th>
-				<th><%= f.label :level, 'Level 3',{:value => 3, :style=> "font-weight: 400;"} %></th>
-				<%end%>
-			</tr>
-			</table>
+<% if current_user.admin? %>
+	<div style="width:50%; background-color: #EFEFEF;">
+		<div style="margin:10px;">
+	</br>Form to add a new book
+	<%= form_for(@book) do |f|%>
+		<%= render 'shared/error_messages', object: f.object%>
+		<div class="field">
+			<%= f.text_field :title, placeholder: "Add new book..."%>
 			<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
-<%= f.submit "Save prize", class: 'btn btn-primary', style:'width:auto;'%>
-<%end %>
-<br>
-</div>
-</div>
+		</div>
+		<%= f.submit "Add book", class: 'btn btn-primary', style:'width:auto;'%>
+	<%end %>
 
+
+	<%= form_for(@prize) do |f|%>
+				<table class="readerTable">
+				<tr>
+					<th><%= f.radio_button :level, 0%> </th><th><%= f.label :level, 'None',{:value => 0, :style=> "font-weight: 400;"}%></th>
+					<th><%= f.radio_button :level, 1%> </th><th><%= f.label :level, 'Level 1',{:value => 1, :style=> "font-weight: 400;"}%></th>
+					<th><%= f.radio_button :level, 2%> </th><th><%= f.label :level, 'Level 2',{:value => 2, :style=> "font-weight: 400;"} %></th>
+					<% if (@reader.program == 'Teen program') %>
+					<th><%= f.radio_button :level, 3%> </th>
+					<th><%= f.label :level, 'Level 3',{:value => 3, :style=> "font-weight: 400;"} %></th>
+					<%end%>
+				</tr>
+				</table>
+				<%= f.text_field :reader_id,  {:value => @reader.id, :style=> "display : none;"} %>
+	<%= f.submit "Save prize", class: 'btn btn-primary', style:'width:auto;'%>
+	<%end %>
+	<br>
+	</div>
+	</div>
+<%end%>
